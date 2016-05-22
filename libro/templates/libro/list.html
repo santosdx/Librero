@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.6-dist/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.6-dist/css/bootstrap-theme.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'libro/style.css' %}" />
+</head>
+<body>
+<h3><span class="glyphicon glyphicon-list"></span> Libros</h3>
+    <ul class="list-group">
+        {% for  libro in object_list %}
+                <a href="{% url 'libro:detail' libro.id %}"  class="list-group-item" target="_blank">
+                    {{ libro.fecha_registro }} - {{ libro.nombre }}
+                </a>
+        {% empty %}
+            <li class="list-group-item">No hay registro de libros.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

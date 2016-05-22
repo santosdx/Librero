@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.6-dist/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.6-dist/css/bootstrap-theme.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'libro/style.css' %}" />
+</head>
+<body>
+    <h1>Home</h1>
+    <ul class="list-group">
+        <a href="{% url 'libro:welcome' %}" class="list-group-item" target="_blank">Welcome</a>
+        <a href="{% url 'libro:list' %}" class="list-group-item" target="_blank">The book list</a>
+        <a href="{% url 'libro:about' %}" class="list-group-item" target="_blank">About</a>
+    </ul>
+
+    <h3>Bienvenid@, </h3>
+    <p>{{ usuario.first_name }} {{ usuario.last_name }}</p>
+    {% for  grupo in usuario.groups.all %}
+        <p>{{ grupo }}</p>
+        {% for  permiso in grupo.permissions.all %}
+            <p>{{ permiso }}</p>
+        {% endfor %}
+    {% endfor %}
+
+</body>
+</html>
